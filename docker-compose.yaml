@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  api:
+    image: message_image
+    volumes: 
+      - /home/sayali_karnewar/Documents/follo/Projects/message_service:/data/db
+    ports: 
+      - 8080:8080
+    working_dir: /data/db
+    command: "python -u main.py"
+    depends_on: 
+      - mongodb
+    network_mode: "host"
+
+
+  mongodb:
+    image: mongo
+    ports: 
+      - 27017:27017
+    network_mode: "host"
