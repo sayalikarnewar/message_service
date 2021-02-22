@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block msg_textbox%}
+
+    {% block output %}
+
+       <!-- previous output -->
+
+        {% for v in output_result %}
+    
+            <p> -> {{v}}</p>  
+        
+        {%endfor%}
+        <hr>
+
+        <!-- response for each input-->
+        {% for v in form %}
+    
+            <p>{{v}}</p>  
+    
+        {%endfor%}
+
+        <!-- except case -->
+
+        {% block result %}
+            <p>{{result}}</p>
+        {%endblock%}
+
+    {% endblock %}
+
+    <br><br>
+
+    {% block input %}
+    <!-- post the form data through the api route named "msg_handle"-->
+        <form method="POST" action="{{ url('msg_handle') }}">
+            <input type="text" name="msg_input" />
+            <input type="submit" name="submit" />
+        </form>
+        
+    {% endblock %}
+
+{%endblock%}
